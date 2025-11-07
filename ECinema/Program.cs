@@ -41,6 +41,7 @@ namespace ECinema
                 name: "default",
                 pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
+            
 
             app.Run();
         }

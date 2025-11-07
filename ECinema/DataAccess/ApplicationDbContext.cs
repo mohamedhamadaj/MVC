@@ -1,10 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApplication2.DataAccess.EntityConfigration;
 using ECinema.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using ECinema.ViewModels;
+
+
+
 namespace ECinema.DataAccess
 
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options)
             : base(options)
@@ -35,5 +40,7 @@ namespace ECinema.DataAccess
             base.OnModelCreating(modelBuilder);
 
         }
+        public DbSet<ECinema.ViewModels.RegisterVM> RegisterVM { get; set; } = default!;
+        public DbSet<ECinema.ViewModels.LoginVM> LoginVM { get; set; } = default!;
     }
 }
