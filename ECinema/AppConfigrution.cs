@@ -22,7 +22,8 @@ namespace ECinema
                 option.User.RequireUniqueEmail = true;
                 option.SignIn.RequireConfirmedEmail = true;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddScoped<IRepository<Category>, Repository<Category>>();
