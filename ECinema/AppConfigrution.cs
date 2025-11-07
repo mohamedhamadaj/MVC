@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ECinema.Utility;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECinema
@@ -20,8 +22,9 @@ namespace ECinema
                 option.User.RequireUniqueEmail = true;
                 option.SignIn.RequireConfirmedEmail = true;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>(); 
-                
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<IEmailSender, EmailSender>();
+
             services.AddScoped<IRepository<Category>, Repository<Category>>();
             services.AddScoped<IRepository<Cinema>, Repository<Cinema>>();
             services.AddScoped<IRepository<Movie>, Repository<Movie>>();

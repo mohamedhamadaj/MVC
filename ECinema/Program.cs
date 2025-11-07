@@ -21,6 +21,7 @@ namespace ECinema
 
             builder.Services.RegisterConfig(connectionStrng);
 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -64,6 +64,7 @@ namespace ECinema.Areas.Identity.Controllers
             if (!result.Succeeded)
                 ModelState.AddModelError(string.Empty, "Invalid User");
             return RedirectToAction("Index", "Home", new { area = "Customer" });
+
         }
 
         public IActionResult Login()
