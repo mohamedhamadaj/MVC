@@ -12,11 +12,11 @@ namespace ECinema.Utility
             {
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("mohamedashrafmahmoudgad@gmail.com", "itdy eqlh ppfs lytl")
+                Credentials = new NetworkCredential("mohamedhamada14512@gmail.com", "upbe sjds bdee jsqq")
             };
 
             return client.SendMailAsync(
-            new MailMessage(from: "mohamedashrafmahmoudgad@gmail.com",
+            new MailMessage(from: "mohamedhamada14512@gmail.com",
                             to: email,
                             subject,
                             htmlMessage

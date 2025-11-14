@@ -31,6 +31,7 @@ namespace ECinema
             services.AddScoped<IRepository<Movie>, Repository<Movie>>();
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IRepository<MovieSubimage>, Repository<MovieSubimage>>();
+            services.AddScoped<IRepository<ApplicationUserOTP>, Repository<ApplicationUserOTP>>();
         }
     }
 }

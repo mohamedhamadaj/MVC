@@ -21,6 +21,7 @@ namespace ECinema.DataAccess
         public DbSet<Actor> Actors { get; set; }
         public DbSet<MovieSubimage> MovieSubimages{ get; set; }
         public DbSet<MovieActor>MovieActors{ get; set; }
+        public DbSet<ApplicationUserOTP> ApplicationUserOTPs{ get; set; }
 
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,7 +41,10 @@ namespace ECinema.DataAccess
             base.OnModelCreating(modelBuilder);
 
         }
-        public DbSet<ECinema.ViewModels.RegisterVM> RegisterVM { get; set; } = default!;
-        public DbSet<ECinema.ViewModels.LoginVM> LoginVM { get; set; } = default!;
+        public DbSet<ECinema.ViewModels.ForgetPasswordVM> ForgetPasswordVM { get; set; } = default!;
+        public DbSet<ECinema.ViewModels.ValidateOTPVM> ValidateOTPVM { get; set; } = default!;
+        public DbSet<ECinema.ViewModels.NewPasswordVM> NewPasswordVM { get; set; } = default!;
+        
+        
     }
 }
