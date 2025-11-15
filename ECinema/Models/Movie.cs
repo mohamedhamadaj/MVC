@@ -12,6 +12,7 @@
         public double Rate { get; set; }
         public string MainImg { get; set; } = string.Empty;
 
+        public long Traffic { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; } = null!;
         public int CinemaId { get; set; }

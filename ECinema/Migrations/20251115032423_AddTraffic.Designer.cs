@@ -4,6 +4,7 @@ using ECinema.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECinema.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251115032423_AddTraffic")]
+    partial class AddTraffic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,27 +172,6 @@ namespace ECinema.Migrations
                     b.ToTable("ApplicationUserOTPs");
                 });
 
-            modelBuilder.Entity("ECinema.Models.Cart", b =>
-                {
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("MovieId", "ApplicationUserId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("Carts");
-                });
-
             modelBuilder.Entity("ECinema.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -321,7 +303,7 @@ namespace ECinema.Migrations
                     b.ToTable("MovieSubimages");
                 });
 
-            modelBuilder.Entity("ECinema.Models.Seat", b =>
+            modelBuilder.Entity("ECinema.ViewModels.ForgetPasswordVM", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -329,318 +311,59 @@ namespace ECinema.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsReserved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SeatCode")
+                    b.Property<string>("UserNameOREmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Seats");
+                    b.ToTable("ForgetPasswordVM");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsReserved = false,
-                            SeatCode = "S1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsReserved = false,
-                            SeatCode = "S2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            IsReserved = false,
-                            SeatCode = "S3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            IsReserved = false,
-                            SeatCode = "S4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            IsReserved = false,
-                            SeatCode = "S5"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            IsReserved = false,
-                            SeatCode = "S6"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            IsReserved = false,
-                            SeatCode = "S7"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            IsReserved = false,
-                            SeatCode = "S8"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            IsReserved = false,
-                            SeatCode = "S9"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            IsReserved = false,
-                            SeatCode = "S10"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            IsReserved = false,
-                            SeatCode = "S11"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            IsReserved = false,
-                            SeatCode = "S12"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            IsReserved = false,
-                            SeatCode = "S13"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            IsReserved = false,
-                            SeatCode = "S14"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            IsReserved = false,
-                            SeatCode = "S15"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            IsReserved = false,
-                            SeatCode = "S16"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            IsReserved = false,
-                            SeatCode = "S17"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            IsReserved = false,
-                            SeatCode = "S18"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            IsReserved = false,
-                            SeatCode = "S19"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            IsReserved = false,
-                            SeatCode = "S20"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            IsReserved = false,
-                            SeatCode = "S21"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            IsReserved = false,
-                            SeatCode = "S22"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            IsReserved = false,
-                            SeatCode = "S23"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            IsReserved = false,
-                            SeatCode = "S24"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            IsReserved = false,
-                            SeatCode = "S25"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            IsReserved = false,
-                            SeatCode = "S26"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            IsReserved = false,
-                            SeatCode = "S27"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            IsReserved = false,
-                            SeatCode = "S28"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            IsReserved = false,
-                            SeatCode = "S29"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            IsReserved = false,
-                            SeatCode = "S30"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            IsReserved = false,
-                            SeatCode = "S31"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            IsReserved = false,
-                            SeatCode = "S32"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            IsReserved = false,
-                            SeatCode = "S33"
-                        },
-                        new
-                        {
-                            Id = 34,
-                            IsReserved = false,
-                            SeatCode = "S34"
-                        },
-                        new
-                        {
-                            Id = 35,
-                            IsReserved = false,
-                            SeatCode = "S35"
-                        },
-                        new
-                        {
-                            Id = 36,
-                            IsReserved = false,
-                            SeatCode = "S36"
-                        },
-                        new
-                        {
-                            Id = 37,
-                            IsReserved = false,
-                            SeatCode = "S37"
-                        },
-                        new
-                        {
-                            Id = 38,
-                            IsReserved = false,
-                            SeatCode = "S38"
-                        },
-                        new
-                        {
-                            Id = 39,
-                            IsReserved = false,
-                            SeatCode = "S39"
-                        },
-                        new
-                        {
-                            Id = 40,
-                            IsReserved = false,
-                            SeatCode = "S40"
-                        },
-                        new
-                        {
-                            Id = 41,
-                            IsReserved = false,
-                            SeatCode = "S41"
-                        },
-                        new
-                        {
-                            Id = 42,
-                            IsReserved = false,
-                            SeatCode = "S42"
-                        },
-                        new
-                        {
-                            Id = 43,
-                            IsReserved = false,
-                            SeatCode = "S43"
-                        },
-                        new
-                        {
-                            Id = 44,
-                            IsReserved = false,
-                            SeatCode = "S44"
-                        },
-                        new
-                        {
-                            Id = 45,
-                            IsReserved = false,
-                            SeatCode = "S45"
-                        },
-                        new
-                        {
-                            Id = 46,
-                            IsReserved = false,
-                            SeatCode = "S46"
-                        },
-                        new
-                        {
-                            Id = 47,
-                            IsReserved = false,
-                            SeatCode = "S47"
-                        },
-                        new
-                        {
-                            Id = 48,
-                            IsReserved = false,
-                            SeatCode = "S48"
-                        },
-                        new
-                        {
-                            Id = 49,
-                            IsReserved = false,
-                            SeatCode = "S49"
-                        },
-                        new
-                        {
-                            Id = 50,
-                            IsReserved = false,
-                            SeatCode = "S50"
-                        });
+            modelBuilder.Entity("ECinema.ViewModels.NewPasswordVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConfirmPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewPasswordVM");
+                });
+
+            modelBuilder.Entity("ECinema.ViewModels.ValidateOTPVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OTP")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ValidateOTPVM");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -800,25 +523,6 @@ namespace ECinema.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("ECinema.Models.Cart", b =>
-                {
-                    b.HasOne("ECinema.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECinema.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
-                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("ECinema.Models.Movie", b =>

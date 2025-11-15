@@ -1,4 +1,5 @@
 ﻿using ECinema.Utility;
+using ECinema.Utility.DBInitilizer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,14 @@ namespace ECinema
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+                services.ConfigureApplicationCookie(options =>
+                {
+                    options.LoginPath = "/Identity/Account/Login"; // Default login path
+                    options.AccessDeniedPath = "/Identity/Account/AccessDenied"; // Default access denied path
+                });
+
+
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddScoped<IRepository<Category>, Repository<Category>>();
@@ -32,6 +41,11 @@ namespace ECinema
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IRepository<MovieSubimage>, Repository<MovieSubimage>>();
             services.AddScoped<IRepository<ApplicationUserOTP>, Repository<ApplicationUserOTP>>();
+            services.AddScoped<IRepository<Cart>, Repository<Cart>>();
+            services.AddScoped<IRepository<Promotion>, Repository<Promotion>>();
+
+
+            services.AddScoped<IDBInitializer, DBInitializer>();
         }
     }
 }

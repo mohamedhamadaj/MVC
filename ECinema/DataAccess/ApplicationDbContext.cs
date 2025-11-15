@@ -3,6 +3,7 @@ using WebApplication2.DataAccess.EntityConfigration;
 using ECinema.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using ECinema.ViewModels;
+using Umbraco.Core.Models.Membership;
 
 
 
@@ -22,6 +23,9 @@ namespace ECinema.DataAccess
         public DbSet<MovieSubimage> MovieSubimages{ get; set; }
         public DbSet<MovieActor>MovieActors{ get; set; }
         public DbSet<ApplicationUserOTP> ApplicationUserOTPs{ get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Seat> Seats { get; set; }
+    
 
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,17 +37,25 @@ namespace ECinema.DataAccess
         //        "Application Intent=ReadWrite;Multi Subnet Failover=False");
         //}
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MovieImageEntityTypeconfigrations).Assembly);
+            // إضافة 50 كرسي
+            for (int i = 1; i <= 50; i++)
+            {
+                modelBuilder.Entity<Seat>().HasData(new Seat
+                {
+                    Id = i,
+                    SeatCode = "S" + i,
+                    IsReserved = false
+                });
+            }
 
             base.OnModelCreating(modelBuilder);
 
         }
-        public DbSet<ECinema.ViewModels.ForgetPasswordVM> ForgetPasswordVM { get; set; } = default!;
-        public DbSet<ECinema.ViewModels.ValidateOTPVM> ValidateOTPVM { get; set; } = default!;
-        public DbSet<ECinema.ViewModels.NewPasswordVM> NewPasswordVM { get; set; } = default!;
         
         
     }

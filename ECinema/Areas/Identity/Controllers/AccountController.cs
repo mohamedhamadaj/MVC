@@ -25,6 +25,12 @@ namespace ECinema.Areas.Identity.Controllers
             _emailSender = emailSender;
             _applicationUserOTPRepository = ApplicationUserOTPRepository;
         }
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login");
+
+        }
         public IActionResult Register()
         {
             return View();
@@ -56,6 +62,9 @@ namespace ECinema.Areas.Identity.Controllers
             var link = Url.Action(nameof(ConfirmMail), "Account", new { area = "Identity", token, userId = user.Id }, Request.Scheme);
             await _emailSender.SendEmailAsync(user.Email!, "ECinema - Confirm Your Email!"
                 , $"<h1>Confirm Your Email By Clicking <a href='{link}'>Here</a></h1>");
+
+            await _userManager.AddToRoleAsync(user, SD.CUSTOMER_ROLE);
+
             return RedirectToAction("Login");
         }
 

@@ -1,5 +1,7 @@
 ﻿using ECinema.DataAccess;
 using ECinema.Models;
+using ECinema.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -7,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace ECinema.Areas.Admin.Controllers
 {
-    
+    [Area("Admin")]
+    [Authorize(Roles = $"{SD.SUPER_ADMIN_ROLE},{SD.ADMIN_ROLE},{SD.EMPLOYEE_ROLE}")]
+
     public class CategoryController : Controller
     {
         //ApplicationDbContext _context=new();
@@ -29,6 +33,7 @@ namespace ECinema.Areas.Admin.Controllers
             return View(new Category());
         }
         [HttpPost]
+        [Authorize(Roles = $"{SD.SUPER_ADMIN_ROLE},{SD.ADMIN_ROLE}")]
         public async Task<IActionResult> Create(Category category, CancellationToken cancellationToken)
         {
            await _categoryRepository.AddAsync(category, cancellationToken);
@@ -50,6 +55,7 @@ namespace ECinema.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{SD.SUPER_ADMIN_ROLE},{SD.ADMIN_ROLE}")]
         public async Task<IActionResult> Edit(Category category, CancellationToken cancellationToken)
         {
             _categoryRepository.Update(category);
@@ -58,6 +64,7 @@ namespace ECinema.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = $"{SD.SUPER_ADMIN_ROLE},{SD.ADMIN_ROLE}")]
         public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
         {
             var category = await _categoryRepository.GetOneAsync(e => e.Id == id,cancellationToken:

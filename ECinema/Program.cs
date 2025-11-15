@@ -1,3 +1,5 @@
+using ECinema.Configrations;
+using ECinema.Utility.DBInitilizer;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +9,7 @@ namespace ECinema
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -20,9 +23,15 @@ namespace ECinema
            //AppConfigrution.RegisterConfig(builder.Services, connectionStrng);
 
             builder.Services.RegisterConfig(connectionStrng);
+            builder.Services.RegisterMapsterConfig();
+
 
 
             var app = builder.Build();
+            // Initialize Database
+            var scope = app.Services.CreateScope();
+            var service = scope.ServiceProvider.GetService<IDBInitializer>();
+            service!.Initialize();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -42,6 +51,7 @@ namespace ECinema
                 name: "default",
                 pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
+
             
 
             app.Run();
